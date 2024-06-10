@@ -1,14 +1,12 @@
-import * as React from 'react';
-import { Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Tabs } from 'expo-router';
+import React, { useEffect, useLayoutEffect } from 'react';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { MaterialTopTabNavigationProp, createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import HomeScreen from '.';
 import StatScreen from './statistics';
 import CollectionsScreen from './collections';
+import { TopTabParamList } from '../../types/pageTypes';
 
-const Tab = createMaterialTopTabNavigator();
+const Tab = createMaterialTopTabNavigator<TopTabParamList>();
 
 function MyTabs() {
   return (
@@ -41,6 +39,7 @@ function MyTabs() {
 
 export default function TabLayout() {
   return (
-    <MyTabs />
+    <NavigationContainer independent={true}><MyTabs /></NavigationContainer>
+      
   );
 }
