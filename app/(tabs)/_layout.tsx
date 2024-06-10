@@ -13,11 +13,12 @@ function MyTabs() {
     <Tab.Navigator
       initialRouteName="Home"
       screenOptions={{
-          tabBarActiveTintColor: '#e91e63',
-          tabBarLabelStyle: { fontSize: 12 },
-          tabBarStyle: { backgroundColor: 'white' },
-      }} 
-      tabBarPosition='bottom'>
+        tabBarActiveTintColor: '#e91e63',
+        tabBarLabelStyle: { fontSize: 12 },
+        tabBarStyle: { backgroundColor: 'white' },
+      }}
+      tabBarPosition="bottom"
+    >
       <Tab.Screen
         name="Statistics"
         component={StatScreen}
