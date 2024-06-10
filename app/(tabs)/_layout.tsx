@@ -1,25 +1,24 @@
-import * as React from 'react';
-import { Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Tabs } from 'expo-router';
+import React, { useEffect, useLayoutEffect } from 'react';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { MaterialTopTabNavigationProp, createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import HomeScreen from '.';
 import StatScreen from './statistics';
 import CollectionsScreen from './collections';
+import { TopTabParamList } from '../../types/pageTypes';
 
-const Tab = createMaterialTopTabNavigator();
+const Tab = createMaterialTopTabNavigator<TopTabParamList>();
 
 function MyTabs() {
   return (
     <Tab.Navigator
       initialRouteName="Home"
       screenOptions={{
-          tabBarActiveTintColor: '#e91e63',
-          tabBarLabelStyle: { fontSize: 12 },
-          tabBarStyle: { backgroundColor: 'white' },
-      }} 
-      tabBarPosition='bottom'>
+        tabBarActiveTintColor: '#e91e63',
+        tabBarLabelStyle: { fontSize: 12 },
+        tabBarStyle: { backgroundColor: 'white' },
+      }}
+      tabBarPosition="bottom"
+    >
       <Tab.Screen
         name="Statistics"
         component={StatScreen}
@@ -41,6 +40,7 @@ function MyTabs() {
 
 export default function TabLayout() {
   return (
-    <MyTabs />
+    <NavigationContainer independent={true}><MyTabs /></NavigationContainer>
+      
   );
 }
