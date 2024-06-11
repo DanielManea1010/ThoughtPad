@@ -1,10 +1,10 @@
 import { Image, StyleSheet,View, Text} from 'react-native';
 
-export default function StatScreen(){
+export default function NoteScreen(){
   return(
     <View style={styles.mainView}>
       <View style={styles.firstText}>
-        <Text style={styles.textContainer}>This is the Stats Screen!</Text>
+      <Text style={styles.textContainer}>Sticky Note Component, work in progress</Text>
       </View>
     </View>
   )
@@ -12,7 +12,9 @@ export default function StatScreen(){
 
 const styles = StyleSheet.create({
   textContainer:{
-    textAlign:'center'
+    alignItems:'center',
+    justifyContent: 'center',
+    flex:1
   },
   mainView:{
     flex:1

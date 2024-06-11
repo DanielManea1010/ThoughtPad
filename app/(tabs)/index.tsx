@@ -1,15 +1,39 @@
 import 'react-native-gesture-handler';
-import { Link } from 'expo-router';
-import { Image, StyleSheet, View, Text } from 'react-native';
+import { Link, useNavigation } from 'expo-router';
+import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import * as React from 'react';
+import {IconButton, PaperProvider, MD3Colors } from 'react-native-paper';
+import { NativeStackNavigationProp } from 'react-native-screens/lib/typescript/native-stack/types';
+import { TopTabParamList } from '@/types/pageTypes';
 
 export default function HomeScreen() {
+  const navigation = useNavigation<NativeStackNavigationProp<TopTabParamList>>();
+  
   return (
-    <View style={{ flex: 1 }}>
-      <View style={styles.firstText}>
-        <Text style={{ textAlign: 'center' }}>This is the Home Screen!</Text>
+    <PaperProvider>
+      <View style={{ flex: 1 }}>
+        <View style={styles.firstText}>
+          <Text style={{ textAlign: 'center' }}>This is the Home Screen!</Text>
+        </View>
+        <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          activeOpacity={0.8}
+          style={styles.buttonContainer}
+          onPress={() => {navigation.navigate('Notes')}}
+        >
+        <IconButton 
+        icon="plus"
+        iconColor={MD3Colors.primary99}
+        containerColor='white'
+        selected={true}
+        size={50}
+        style={styles.addButton}
+        />
+         </TouchableOpacity>
+        </View>
       </View>
-    </View>
+    </PaperProvider>
+    
   );
 }
 
@@ -40,4 +64,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center', // Align on the vertical axis
     alignItems: 'center', // Align on the horizontal axis,
   },
+  addButton:{
+    backgroundColor:"#00A300",
+  },
+  buttonContainer:{
+    alignSelf: 'flex-end',
+    paddingHorizontal: 1,
+    paddingVertical: 1,
+    borderRadius: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
 });
