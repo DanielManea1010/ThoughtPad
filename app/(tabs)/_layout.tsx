@@ -2,11 +2,11 @@ import React, { useEffect, useLayoutEffect } from 'react';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { MaterialTopTabNavigationProp, createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from '.';
+import HomeScreen from './home';
 import StatScreen from './statistics';
 import CollectionsScreen from './collections';
 import { TopTabParamList } from '../../types/pageTypes';
-import NoteScreen from '@/app/(tabs)/addNote';
+import NoteScreen from '@/app/(tabs)/note';
 
 const Tab = createMaterialTopTabNavigator<TopTabParamList>();
 const Stack = createNativeStackNavigator();
