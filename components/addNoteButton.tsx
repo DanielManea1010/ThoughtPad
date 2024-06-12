@@ -1,28 +1,31 @@
 import 'react-native-gesture-handler';
-import { Link, useNavigation } from 'expo-router';
-import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { TouchableOpacity, StyleSheet } from 'react-native';
 import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import {IconButton, PaperProvider, MD3Colors } from 'react-native-paper';
 import { NativeStackNavigationProp } from 'react-native-screens/lib/typescript/native-stack/types';
+import { useNavigation } from 'expo-router';
+import {IconButton, MD3Colors } from 'react-native-paper';
 import { TopTabParamList } from '@/types/pageTypes';
-import { useColorScheme } from 'react-native';
-import LightTheme from '../../themes/LightTheme';
-import DarkTheme from '../../themes/DarkTheme';
 
 
-export default function HomeScreen() {
+export default function AddNoteButton(){
   const navigation = useNavigation<NativeStackNavigationProp<TopTabParamList>>();
-  const colorScheme = useColorScheme();
-  
-  return (
-    <PaperProvider>
-      <NavigationContainer independent={true}>
-      <HomeScreen/>
-      </NavigationContainer>
-    </PaperProvider>
-    
-  );
+
+  return(
+    <TouchableOpacity
+      activeOpacity={0.8}
+      style={styles.buttonContainer}
+      onPress={() => {navigation.navigate('Notes')}}
+    >
+    <IconButton 
+    icon="plus"
+    iconColor={MD3Colors.primary99}
+    containerColor='white'
+    selected={true}
+    size={50}
+    style={styles.addButton}
+    />
+     </TouchableOpacity>
+  )
 }
 
 const styles = StyleSheet.create({
