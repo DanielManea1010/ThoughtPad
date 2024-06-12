@@ -2,6 +2,7 @@ import 'react-native-gesture-handler';
 import { Link, useNavigation } from 'expo-router';
 import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
 import {IconButton, PaperProvider, MD3Colors } from 'react-native-paper';
 import { NativeStackNavigationProp } from 'react-native-screens/lib/typescript/native-stack/types';
 import { TopTabParamList } from '@/types/pageTypes';
@@ -11,6 +12,7 @@ export default function HomeScreen() {
   
   return (
     <PaperProvider>
+      <NavigationContainer independent={true}>
       <View style={{ flex: 1 }}>
         <View style={styles.firstText}>
           <Text style={{ textAlign: 'center' }}>This is the Home Screen!</Text>
@@ -32,6 +34,7 @@ export default function HomeScreen() {
          </TouchableOpacity>
         </View>
       </View>
+      </NavigationContainer>
     </PaperProvider>
     
   );

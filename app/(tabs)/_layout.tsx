@@ -6,7 +6,7 @@ import HomeScreen from '.';
 import StatScreen from './statistics';
 import CollectionsScreen from './collections';
 import { TopTabParamList } from '../../types/pageTypes';
-import NoteScreen from '@/components/addNote';
+import NoteScreen from '@/app/(tabs)/addNote';
 
 const Tab = createMaterialTopTabNavigator<TopTabParamList>();
 const Stack = createNativeStackNavigator();
@@ -43,12 +43,10 @@ function MyTabs() {
 
 export default function TabLayout() {
   return (
-    <NavigationContainer independent={true}>
+    
       <Stack.Navigator>
         <Stack.Screen name="MainTabs" component={MyTabs} options={{ headerShown: false }} />
         <Stack.Screen name="Notes" component={NoteScreen} options={{ title: 'Add Note' }} />
-      </Stack.Navigator>
-    </NavigationContainer>
-      
+      </Stack.Navigator>  
   );
 }
