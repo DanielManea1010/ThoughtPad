@@ -13,4 +13,4 @@ const AppDarkTheme = {
   }
 }
 
-export default DarkTheme;
+export default AppDarkTheme;

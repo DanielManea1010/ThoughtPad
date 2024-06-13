@@ -1,12 +1,17 @@
-import { Image, StyleSheet,View, Text} from 'react-native';
+import { useContext } from 'react';
+import { StyleSheet, View, Text} from 'react-native';
+import { ThemeContext } from '../../hooks/ThemeContext';
+
 
 export default function NoteScreen(){
+  const { theme } = useContext(ThemeContext);
+
   return(
-    <View style={styles.mainView}>
+    <View style={[styles.mainView,{backgroundColor: theme.colors.background}]}>
       <View style={styles.firstText}>
-      <Text style={styles.textContainer}>Sticky Note Component, work in progress</Text>
+        <Text style={[styles.textContainer, { color: theme.colors.text }]}>Sticky Note Component, work in progress</Text>
       </View>
-    </View>
+  </View>
   )
 }
 
