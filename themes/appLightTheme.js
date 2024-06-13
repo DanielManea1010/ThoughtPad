@@ -13,4 +13,4 @@ const AppLightTheme = {
   }
 }
 
-export default LightTheme;
+export default AppLightTheme;

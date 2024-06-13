@@ -1,10 +1,14 @@
-import { Image, StyleSheet,View, Text} from 'react-native';
+import { useContext } from 'react';
+import { StyleSheet, View, Text} from 'react-native';
+import { ThemeContext } from '../../hooks/ThemeContext';
 
 export default function StatScreen(){
+  const { theme } = useContext(ThemeContext);
+
   return(
-    <View style={styles.mainView}>
+    <View style={[styles.mainView,{backgroundColor: theme.colors.background}]}>
       <View style={styles.firstText}>
-        <Text style={styles.textContainer}>This is the Stats Screen!</Text>
+        <Text style={[styles.textContainer, { color: theme.colors.text }]}>This is the Stats Screen!</Text>
       </View>
     </View>
   )

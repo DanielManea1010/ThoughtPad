@@ -1,24 +1,30 @@
-import React, { useEffect, useLayoutEffect } from 'react';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
-import { MaterialTopTabNavigationProp, createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import React, { useContext, useEffect } from 'react';
+import { StatusBar } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './home';
 import StatScreen from './statistics';
 import CollectionsScreen from './collections';
 import { TopTabParamList } from '../../types/pageTypes';
 import NoteScreen from '@/app/(tabs)/note';
+import { ThemeProvider, ThemeContext } from '../../hooks/ThemeContext';
+import { PaperProvider } from 'react-native-paper';
+import StatusBarComponent from '@/components/StatusBar';
 
 const Tab = createMaterialTopTabNavigator<TopTabParamList>();
 const Stack = createNativeStackNavigator();
 
 function MyTabs() {
+  const { theme } = useContext(ThemeContext);
+  
   return (
     <Tab.Navigator
       initialRouteName="Home"
       screenOptions={{
         tabBarActiveTintColor: '#e91e63',
-        tabBarLabelStyle: { fontSize: 12 },
-        tabBarStyle: { backgroundColor: 'white' },
+        tabBarLabelStyle: { fontSize: 12, color:theme.colors.text },
+        tabBarStyle: { backgroundColor: theme.colors.background },
       }}
       tabBarPosition="bottom"
     >
@@ -42,11 +48,17 @@ function MyTabs() {
 }
 
 export default function TabLayout() {
+  const { theme } = useContext(ThemeContext);
+
   return (
-    
-      <Stack.Navigator>
-        <Stack.Screen name="MainTabs" component={MyTabs} options={{ headerShown: false }} />
-        <Stack.Screen name="Notes" component={NoteScreen} options={{ title: 'Add Note' }} />
-      </Stack.Navigator>  
+    <ThemeProvider>
+      <PaperProvider>
+        <StatusBarComponent/>
+        <Stack.Navigator>
+          <Stack.Screen name="MainTabs" component={MyTabs} options={{ headerShown: false }} />
+          <Stack.Screen name="Notes" component={NoteScreen} options={{ title: 'Add Note' }} />
+        </Stack.Navigator>
+      </PaperProvider>
+    </ThemeProvider>
   );
 }
