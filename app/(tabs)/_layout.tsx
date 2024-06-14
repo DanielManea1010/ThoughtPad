@@ -56,7 +56,7 @@ export default function TabLayout() {
         <StatusBarComponent/>
         <Stack.Navigator>
           <Stack.Screen name="MainTabs" component={MyTabs} options={{ headerShown: false }} />
-          <Stack.Screen name="Notes" component={NoteScreen} options={{ title: 'Add Note' }} />
+          <Stack.Screen name="Notes" component={NoteScreen} options={{ headerShown: false }} />
         </Stack.Navigator>
       </PaperProvider>
     </ThemeProvider>

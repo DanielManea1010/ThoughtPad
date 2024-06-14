@@ -1,11 +1,6 @@
 import 'react-native-gesture-handler';
-import React, {useState, useEffect} from 'react';
-import { NavigationContainer, DarkTheme } from '@react-navigation/native';
-import { DefaultTheme, PaperProvider } from 'react-native-paper';
-import { useColorScheme, StyleSheet, Appearance } from 'react-native';
-import HomeScreen from './home';
-import { ThemeProvider } from '../../hooks/ThemeContext';
-
+import React from 'react';
+import { StyleSheet} from 'react-native';
 
 export default function App() {
   return (
