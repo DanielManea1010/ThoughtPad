@@ -18,7 +18,6 @@ export default function AddNoteButton(){
     >
     <IconButton 
     icon="plus"
-    iconColor={MD3Colors.primary99}
     containerColor='white'
     selected={true}
     size={50}
@@ -37,13 +36,6 @@ const styles = StyleSheet.create({
   stepContainer: {
     gap: 8,
     marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
   },
   firstText: {
     flex: 1,

@@ -11,6 +11,7 @@ import NoteScreen from '@/app/(tabs)/note';
 import { ThemeProvider, ThemeContext } from '../../hooks/ThemeContext';
 import { PaperProvider } from 'react-native-paper';
 import StatusBarComponent from '@/components/StatusBar';
+import { NotesProvider } from '../../hooks/NotesContext';
 
 const Tab = createMaterialTopTabNavigator<TopTabParamList>();
 const Stack = createNativeStackNavigator();
@@ -53,11 +54,13 @@ export default function TabLayout() {
   return (
     <ThemeProvider>
       <PaperProvider>
+        <NotesProvider>
         <StatusBarComponent/>
         <Stack.Navigator>
           <Stack.Screen name="MainTabs" component={MyTabs} options={{ headerShown: false }} />
-          <Stack.Screen name="Notes" component={NoteScreen} options={{ title: 'Add Note' }} />
+          <Stack.Screen name="Notes" component={NoteScreen} options={{ headerShown: false }} />
         </Stack.Navigator>
+        </NotesProvider>
       </PaperProvider>
     </ThemeProvider>
   );
