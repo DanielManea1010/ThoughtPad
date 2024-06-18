@@ -1,14 +1,18 @@
 import React, { useContext } from 'react';
-import { SafeAreaView, StyleSheet, View, Text } from 'react-native';
+import { SafeAreaView, StyleSheet, View, Text, ScrollView } from 'react-native';
 import AddNote from '@/components/AddNoteButton';
 import { ThemeContext } from '@/hooks/ThemeContext';
 import AppDarkTheme from '../../themes/appDarkTheme';
 import SwitchButton from '../../components/SwitchThemeButton';
+import StickyNote from '../../components/Sticky';
+import { useNotes } from '@/hooks/NotesContext';
 
 export default function HomeScreen() {
   const { theme } = useContext(ThemeContext);
+  const { notes } = useNotes();
   const darkMode = theme === AppDarkTheme;
   console.log('Rendering HomeScreen, darkMode:', darkMode);
+
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]}>
@@ -21,9 +25,11 @@ export default function HomeScreen() {
           <SwitchButton />
         </View>
       </View>
-      <View style={styles.firstText}>
-        <Text style={[styles.text, { color: theme.colors.text }]}>This is the Home Screen!</Text>
-      </View>
+      <ScrollView contentContainerStyle={styles.notesContainer}>
+      {notes.map((note, index) => (
+          <StickyNote key={index} title={note.title} content={note.content} date={note.date} />
+        ))}
+      </ScrollView>
       <View style={styles.buttonContainer}>
         <AddNote />
       </View>
@@ -55,14 +61,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonContainer: {
+    position: 'absolute',
     borderRadius: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
+    bottom: 5,
+    right: 12,
   },
   text: {
     textAlign: 'center',
   },
   themeText: {
     marginRight: 8,
+  },
+  notesContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
   },
 });
