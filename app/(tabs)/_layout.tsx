@@ -1,6 +1,4 @@
-import React, { useContext, useEffect } from 'react';
-import { StatusBar } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import React, { useContext, useEffect, useState } from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './home';
@@ -12,6 +10,7 @@ import { ThemeProvider, ThemeContext } from '../../hooks/ThemeContext';
 import { PaperProvider } from 'react-native-paper';
 import StatusBarComponent from '@/components/StatusBar';
 import { NotesProvider } from '../../hooks/NotesContext';
+import { initDB, getNotes } from '@/database/sqliteUtils';
 
 const Tab = createMaterialTopTabNavigator<TopTabParamList>();
 const Stack = createNativeStackNavigator();
@@ -49,7 +48,19 @@ function MyTabs() {
 }
 
 export default function TabLayout() {
-  const { theme } = useContext(ThemeContext);
+
+  useEffect(() => {
+    const initializeDatabase = async () => {
+      // Inițializează baza de date
+      await initDB();
+
+      // Citește înregistrările și afișează-le în consolă
+      const notes = await getNotes();
+      console.log('Notes:', notes);
+    };
+
+    initializeDatabase();
+  }, []);
 
   return (
     <ThemeProvider>
